@@ -1,8 +1,10 @@
 \documentclass[[a4paper, 11pt]{article}
 \usepackage{graphicx}
+\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-
+\usepackage{amsmath}
+\usepackage{lmodern}
 \begin{document}
 %
 \title{Indicateurs, morphologiques pour la plupart}
@@ -23,76 +25,147 @@ Mesures récoltées dans différents papiers conseillés par Mickaël ou trouvé
 %
 %
 %
-\section{Compacité}
+\section{Compacités}
 
-La compacité $C_f$ d'une forme $f$ (forme = objet tridimensionnel plein) est définie comme le rapport de son volume $V_f$  et de sa surface extérieure $S_f$
+La compacité $C_f$ d'une forme $f$ (forme = objet tridimensionnel plein) est définie comme le rapport de son volume $V_f$  et de sa surface extérieure $A_f$
 
 \begin{equation}
-C_f= \frac{V_f}{S_f}
+C_f= \frac{V_f}{A_f}
 \end{equation}
 
 
 
-\subsection{Volume de référence}
+\subsection{Compacités relatives} % (fold)
+\label{subsec:compacités_relatives}
+Issu de \cite{pessenlehner_building_2003}
 
 
+La compacité relative $RC(f)$ d'une forme $f$ est le ratio de sa compacité et de la compacité d'une forme de référence «pertinente», de même volume $V_{ref}=V_f$: 
+\begin{itemize}
+	\item sphère :  forme de compacité maximale, irréaliste pour un bâtiment
+	\item demi-sphère : plus réaliste car «faisable» (cf. igloo)
+	\item cube : plus réaliste encore étant donnée la forme «carrée »des bâtiments modernes occidentaux. 
+\end{itemize}
 
-\section{Compacités relatives} % (fold)
-\label{sec:compacités_relatives}
+
+\begin{equation}
+RC_f= \frac{V_f}{A_f}*\frac{A_{ref}}{V_{ref}}
+\end{equation}
+
+avec $V_{ref}=V_f$. (ça revient donc au ratio des aires de la forme et de la forme de référence de volume équivalent)
+
+L'article  \cite{pessenlehner_building_2003} donne directement les formules suivantes:
+
+
+\begin{equation}
+RC_{sphère}(f) \approx 4.84 * V_f^{2/3} * A_f^{-1}
+\end{equation}
+
+
+\begin{equation}
+RC_{cube}(f) =6 * V_f^{2/3} * A_f^{-1}
+\end{equation}
+
+
+\begin{equation}
+RC_{hemisphère}(f) \approx 3.83 * V_f^{2/3} * A_f^{-1}
+\end{equation}
+
+
+Détail du calcul de $RC_{sphère}$ :
+
+On cherche l'aire $A_{ref}$ de la sphère de volume équivalent à la forme $f$ ($V_{ref}=V_f$.)
+Soit $\rho$ le rayon de cette sphère. 
+
+De $V_{ref}=V_f=\frac{4\pi}{3}\rho^3 $, on déduit $\rho$:
+
+\begin{equation*}
+\rho = \left (\frac{3}{4\pi}\right)^{1/3} *(V_f)^{1/3}
+\end{equation*}
+
+
+d'où:
+\begin{align*}
+A_{ref} &= 4\pi * \rho^2\\
+ &= 4\pi*\left( \frac{3}{4\pi}\right)^{2/3}*(V_f)^{2/3}
+\end{align*}
+et 
+\begin{align*}
+RC_{sphère}(f)&= \frac{A_{ref}}{A_f}\\
+       &=4\pi*\left( \frac{3}{4\pi}\right)^{2/3}*(V_f)^{2/3} * A_f^{-1}\\
+       &\approx 4.84 * V_b^{2/3} * A_f^{-1} 
+\end{align*}
+
+
+\textbf{Valeurs:} Théoriquement $RC\in[0;1]$ , plus c'est proche de 1 , plus la forme est proche de celle de référence. Sans unité.
 
 % section compacités_relatives (end)
 
 
-D'après \cite{pessenlehner_building_2003}, la compacité relative est corrélée avec le heating load et la surchauffe (\textit{overheating}) des bâtiments.
-Les ajustements suivants sont obtenus sur la base de simulation à grains fins du chauffage des bâtiments en faisant varier leur  
+
+
+\subsection{Pour l'énergie et le climat} % (fold)
+\label{sub:pour_l_énergie_et_le_climat}
+
+% subsection pour_l_énergie_et_le_climat (end)
+D'après \cite{pessenlehner_building_2003}, la compacité relative est corrélée avec la charge de chauffage $HL$ (\textbf{\textit{heating load}}) et la surchauffe (\textit{overheating}) des bâtiments.
+Les auteurs insistent sur le fait que la RC ne capture pas suffisament les propriétés de la morphologie du bâtiment  pour que le lien avec l'overheating soit fort (il manque l'ombrage par exemple)
+
+\begin{equation}
+HL = 105*RC_{cube}^{-0.75} * V^{-0.25} 
+\end{equation}
+
+L'ajustement statistique est obtenu sur des simus thermiques de 12 bâtiments formés de 18 cubes, dont l'assemblage varie pour obtenir des compacités différentes (de 0.62 à 0.98 avec un volume de référence cubique)  du chauffage des bâtiments en faisant varier la surface vitrée des murs, l'orientation du bâtiment: 720 combinaisons simulées. 
 
 
 
 
-
-\subsubsection{Sample Heading (Third Level)} Only two levels of
-headings should be numbered. Lower level headings remain unnumbered;
-they are formatted as run-in headings.
-
-\paragraph{Sample Heading (Fourth Level)}
-The contribution should contain no more than four levels of
-headings. Table~\ref{tab1} gives a summary of all heading levels.
-
-\begin{table}
-\caption{Table captions should be placed above the
-tables.}\label{tab1}
-\begin{tabular}{|l|l|l|}
-\hline
-Heading level &  Example & Font size and style\\
-\hline
-Title (centered) &  {\Large\bfseries Lecture Notes} & 14 point, bold\\
-1st-level heading &  {\large\bfseries 1 Introduction} & 12 point, bold\\
-2nd-level heading & {\bfseries 2.1 Printing Area} & 10 point, bold\\
-3rd-level heading & {\bfseries Run-in Heading in Bold.} Text follows & 10 point, bold\\
-4th-level heading & {\itshape Lowest Level Heading.} Text follows & 10 point, italic\\
-\hline
-\end{tabular}
-\end{table}
-
-
-\noindent Displayed equations are centered and set on a separate
-line.
 \begin{equation}
 x + y = z
 \end{equation}
 Please try to avoid rasterized images for line-art diagrams and
 schemas. Whenever possible, use vector graphics instead (see
-Fig.~\ref{fig1}).
 
-\begin{figure}
-\includegraphics[width=\textwidth]{fig1.eps}
-\caption{A figure caption is always placed below the illustration.
-Please note that short captions are centered, while long ones are
-justified by the macro package automatically.} \label{fig1}
-\end{figure}
-
+%\begin{figure}
+%\includegraphics[width=\textwidth]{fig1.eps}
+%\caption{A figure caption is always placed below the illustration.
+%Please note that short captions are centered, while long ones are
+%justified by the macro package automatically.} \label{fig1}
+%\end{figure}
 
 
+\section{Sky View Factor} % (fold)
+\label{sec:sky_view_factor}
+
+
+C'est une mesure qui donne , en un point , la fraction de ciel visible par rapport à celle d'un hémisphère centré en ce point.
+(peut être que c'est un rapport entre les deux angles solides, à vérifier avec qqn qui sait )
+
+
+
+\begin{equation}
+ V_{sky} \approx \frac{1}{2\pi}\int_0^{2\pi}[cos \beta sin^2 H_{\phi} + sin \beta cos(\phi -\alpha)*(H_{\phi}-sinH_{\phi} cosH_{\phi}) ]d\phi	
+\end{equation}
+
+
+\textbf{Valeurs} $\in [0;1]$ , sans unité.
+Plus c'est roche de 0 , plus c'est bouché, moins il y a de ciel.
+
+
+
+\section{Coverage Ratio}
+
+Le coverage ratio est simplement le ratio entre la somme des aires au sol des bâtiments ($A_i$)d'une zone et l'aire de la zone $A_z$
+
+\begin{equation}
+	\lambda_p =  \frac{1}{A_z} \sum_{i=1}^n A_i
+\end{equation}
+
+\textbf{Valeurs} $\in [0;1]$ , sans unité
+
+
+
+% section sky_view_factor (end)
 
 %
 % ---- Bibliography ----
